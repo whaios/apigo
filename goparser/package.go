@@ -1,5 +1,10 @@
 package goparser
 
+import (
+	"go/ast"
+	"strings"
+)
+
 func newPackage(id string) *Package {
 	return &Package{
 		id:    id,
@@ -15,10 +20,39 @@ type Package struct {
 	types map[string]*AstTypeSpec // 使用到的所有类型，key=类型唯一名称（包名+类型名 type.Id）
 }
 
-func (p Package) addFile(astFile *AstFile) {
+func (p *Package) AddFile(absPath string, file *ast.File) *AstFile {
+	astFile := &AstFile{
+		pkg:     p,
+		absPath: absPath,
+		file:    file,
+	}
 	p.files[astFile.absPath] = astFile
+	return astFile
 }
 
-func (p Package) addType(astTypeSpec *AstTypeSpec) {
+func (p *Package) AddType(astFile *AstFile, typeSpec *ast.TypeSpec) *AstTypeSpec {
+	astTypeSpec := &AstTypeSpec{
+		pkg:      p,
+		file:     astFile,
+		typeSpec: typeSpec,
+	}
 	p.types[astTypeSpec.Id()] = astTypeSpec
+	return astTypeSpec
+}
+
+// GetType 获取类型
+func (p *Package) GetType(typeId string) *AstTypeSpec {
+	return p.types[typeId]
+}
+
+// GetTypeByName 获取类型
+func (p *Package) GetTypeByName(typeName string) *AstTypeSpec {
+	typeId := TypeId(p.id, typeName)
+	return p.GetType(typeId)
+}
+
+// GetPkgName 根据包路径截取出包名
+func GetPkgName(pkgId string) string {
+	paths := strings.Split(pkgId, "/")
+	return paths[len(paths)-1]
 }

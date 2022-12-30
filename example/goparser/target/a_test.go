@@ -1,4 +1,4 @@
-package goparser
+package target
 
 import "testing"
 

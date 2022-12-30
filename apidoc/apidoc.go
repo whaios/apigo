@@ -1,17 +1,9 @@
 package apidoc
 
-import (
-	"github.com/whaios/apigo/goparser"
-	"go/parser"
-)
-
 // Generate 生成API文档
 func Generate(searchDir string) error {
-	pkgs, err := goparser.ParseDir(searchDir, parser.ParseComments)
-	if err != nil {
-		return err
-	}
 
+	return nil
 }
 
 type ApiDoc struct {
