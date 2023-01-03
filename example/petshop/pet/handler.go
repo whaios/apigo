@@ -1,6 +1,9 @@
 package pet
 
-import _ "petshop/comm"
+import (
+	_ "petshop/comm"
+	_ "petshop/model"
+)
 
 // Handler 宠物管理
 //
@@ -14,8 +17,8 @@ type Handler struct {
 //
 // @desc 指定id查询宠物详情
 // @url GET /pet/{petId}
-// @path_var petId int true "" "宠物 id"
-// @resp Pet{}
+// @path_var petId int true "1" "宠物 id"
+// @resp model.Pet{}
 func (h *Handler) GetPet() {
 
 }
@@ -26,7 +29,7 @@ func (h *Handler) GetPet() {
 // @param_mode urlencoded
 // @param name string true "Hello Kitty" "宠物名"
 // @param status string true "sold" "宠物销售状态"
-// @resp Pet{}
+// @resp model.Pet{}
 func (h *Handler) CreatePet() {
 
 }
@@ -34,8 +37,8 @@ func (h *Handler) CreatePet() {
 // EditPet 修改宠物信息
 //
 // @url PUT /pet
-// @query Pet{}
-// @resp Pet{}
+// @param model.Pet{}
+// @resp model.Pet{}
 func (h *Handler) EditPet() {
 
 }
@@ -52,7 +55,7 @@ func (h *Handler) DelPet() {
 //
 // @url GET /pet/findByStatus
 // @query status string true "" "宠物销售状态"
-// @resp List{}
+// @resp FindByStatusRsp{}
 func (h *Handler) FindByStatus() {
 
 }

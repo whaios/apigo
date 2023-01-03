@@ -23,6 +23,11 @@ func (f *AstFile) Name() string {
 	return filepath.Base(f.absPath)
 }
 
+// FullName 获取文件绝对路径全名称
+func (f *AstFile) FullName() string {
+	return f.absPath
+}
+
 // GetImportPkg 从 import 的包中查找指定包，没有找到返回空字符串
 func (f *AstFile) GetImportPkg(pkgName string) string {
 	for _, impt := range f.file.Imports {
@@ -54,4 +59,8 @@ func (f *AstFile) DotImports() []string {
 		}
 	}
 	return dotimpts
+}
+
+func (f *AstFile) File() *ast.File {
+	return f.file
 }

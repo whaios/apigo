@@ -1,7 +1,7 @@
 package pet
 
-type Pet struct {
-}
+import "petshop/model"
 
-type List struct {
+type FindByStatusRsp struct {
+	Pets []*model.Pet `json:"pets"` // 宠物列表
 }
