@@ -186,7 +186,7 @@
                         }
                     }
                 },
-                "x-apifox-folder": "宠物商城/宠物管理",
+                "x-apifox-folder": "宠物管理",
                 "x-apifox-status": ""
             },
             "post": {

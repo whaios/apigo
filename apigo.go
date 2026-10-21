@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"io/fs"
+	"os"
+
 	"github.com/urfave/cli/v2"
 	"github.com/whaios/apigo/apifox"
 	"github.com/whaios/apigo/log"
 	"github.com/whaios/apigo/parser"
-	"io/fs"
-	"os"
 )
 
 // 环境变量
@@ -173,11 +174,11 @@ func apifoxImptData(ctx context.Context, dir, outFile string) {
 		log.Error(err.Error())
 		return
 	}
-	if result.Success {
+	if !result.HasError() {
 		log.Info(result.String())
 		log.Success("同步 Apifox 成功")
 	} else {
-		log.Error("同步 Apifox 失败")
+		log.Error("同步 Apifox 失败：" + result.ErrorMessage())
 	}
 	return
 }

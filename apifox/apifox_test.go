@@ -3,15 +3,16 @@ package apifox_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/whaios/apigo/apifox"
-	"github.com/whaios/apigo/parser"
 	"os"
 	"path/filepath"
+
+	"github.com/whaios/apigo/apifox"
+	"github.com/whaios/apigo/parser"
 )
 
 func ExamplePostImportData() {
-	apifox.ProjectId = "0"
-	apifox.AccessToken = "a"
+	apifox.ProjectId = "2150859"
+	apifox.AccessToken = "APS-wzv5TgZwZSbuRfKd9eAx3uFpasXpvUMi"
 
 	openApiJsonData, err := os.ReadFile(filepath.Join("../example", "openapi_data.json"))
 	if err != nil {
@@ -29,7 +30,7 @@ func ExamplePostImportData() {
 
 	fmt.Println(string(resultData))
 	// Output:
-	// {"success":false,"data":{"apiCollection":{"item":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0},"folder":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0}},"schemaCollection":{"item":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0},"folder":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0}}}}
+	// {"success":true,"data":{"apiCollection":{"item":{"createCount":5,"updateCount":0,"errorCount":0,"ignoreCount":0},"folder":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0}},"schemaCollection":{"item":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0},"folder":{"createCount":0,"updateCount":0,"errorCount":0,"ignoreCount":0}}}}
 }
 
 func ExampleOpenApi2() {
