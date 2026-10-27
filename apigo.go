@@ -79,21 +79,15 @@ func main() {
 				},
 				&cli.StringFlag{
 					Name:        "apiOverwriteMode",
-					Value:       "methodAndPath",
-					Usage:       "匹配到相同接口时的覆盖模式，不传表示忽略。枚举值: methodAndPath=覆盖，both=保留两者，merge=智能合并，ignore=不导入",
+					Value:       "",
+					Usage:       "匹配到相同接口时的覆盖模式，不传表示忽略。枚举值: OVERWRITE_EXISTING=覆盖现有的接口，AUTO_MERGE=自动合并更改到现有的接口，KEEP_EXISTING=跳过更改并保留现有的接口，CREATE_NEW=保留现有的接口，创建新的接口",
 					Destination: &apifox.ApiOverwriteMode,
 				},
 				&cli.StringFlag{
 					Name:        "schemaOverwriteMode",
 					Value:       "",
-					Usage:       "匹配到相同数据模型时的覆盖模式，不传表示忽略。枚举值: name=覆盖，both=保留两者，merge=智能合并，ignore=不导入",
+					Usage:       "匹配到相同数据模型时的覆盖模式，不传表示忽略。枚举值: OVERWRITE_EXISTING=覆盖现有的模式，AUTO_MERGE=自动合并更改到现有的模式，KEEP_EXISTING=跳过更改并保留现有的模式，CREATE_NEW=保留现有的模式，创建新的模式",
 					Destination: &apifox.SchemaOverwriteMode,
-				},
-				&cli.BoolFlag{
-					Name:        "syncApiFolder",
-					Value:       false,
-					Usage:       "是否同步更新接口所在目录（默认值: false）",
-					Destination: &apifox.SyncApiFolder,
 				},
 			},
 			Action: func(c *cli.Context) error {

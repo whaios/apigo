@@ -18,14 +18,12 @@ var (
 	ProjectId   string // 项目 ID，打开 Apifox 进入项目里的“项目设置”查看
 	AccessToken string // 身份认证，个人访问令牌，查看[如何获取个人访问令牌](https://www.apifox.cn/help/openapi/)
 
-	// ApiOverwriteMode 匹配到相同接口时的覆盖模式，不传表示忽略。
-	//	枚举值: methodAndPath=覆盖，both=保留两者，merge=智能合并，ignore=不导入
+	// ApiOverwriteMode 匹配到相同接口时的覆盖模式，默认值：OVERWRITE_EXISTING。
+	//	枚举值: OVERWRITE_EXISTING=覆盖现有的接口，AUTO_MERGE=自动合并更改到现有的接口，KEEP_EXISTING=跳过更改并保留现有的接口，CREATE_NEW=保留现有的接口，创建新的接口
 	ApiOverwriteMode string
-	// SchemaOverwriteMode 匹配到相同数据模型时的覆盖模式，不传表示忽略。
-	//	枚举值: name=覆盖，both=保留两者，merge=智能合并，ignore=不导入
+	// SchemaOverwriteMode 匹配到相同数据模型时的覆盖模式，默认值：OVERWRITE_EXISTING。
+	//	枚举值: OVERWRITE_EXISTING=覆盖现有的模式，AUTO_MERGE=自动合并更改到现有的模式，KEEP_EXISTING=跳过更改并保留现有的模式，CREATE_NEW=保留现有的模式，创建新的模式
 	SchemaOverwriteMode string
-	// SyncApiFolder 是否同步更新接口所在目录（默认值: false）
-	SyncApiFolder bool
 )
 
 const (
